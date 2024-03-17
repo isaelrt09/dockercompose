@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  php:
+    image: php:apache
+    volumes:
+      - ./docker-compose:/var/www/html
+    ports:
+      - "8080:80"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
